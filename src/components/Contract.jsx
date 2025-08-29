@@ -37,18 +37,6 @@ const Contract = () => {
                     </button>
                 </form>
 
-                {/* Optional: Social Icons */}
-                {/* <div className="flex justify-center gap-6 mt-10 contact-socials">
-                    <a href="https://github.com/anik-bin-sayed?tab=repositories" className="social-icon">
-                        <i className="fab fa-github fa-lg"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/anik-bin-sayed/" className="social-icon">
-                        <i className="fab fa-linkedin fa-lg"></i>
-                    </a>
-                    <a href="#" className="social-icon">
-                        <i className="fab fa-twitter fa-lg"></i>
-                    </a>
-                </div> */}
             </div>
         </section>
     )

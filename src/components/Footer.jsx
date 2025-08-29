@@ -40,10 +40,6 @@ const Footer = () => {
                 </div>
             </div>
 
-            {/* Copyright */}
-            {/* <p className="text-center footer-copy text-sm mt-8">
-                &copy; {new Date().getFullYear()} Anik. All rights reserved.
-            </p> */}
         </footer>
     )
 }
