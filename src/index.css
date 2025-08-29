@@ -3,3 +3,449 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* ===== Light Mode ===== */
+body.light .navbar {
+  background-color: #ffffff;
+  color: #111111;
+}
+body.light .logo {
+  color: #111111;
+}
+body.light .nav-link {
+  color: #111111;
+  transition: color 0.3s;
+}
+body.light .nav-link:hover {
+  color: #2563eb;
+}
+body.light .theme-toggle {
+  background-color: #111111;
+  color: #fff;
+}
+
+body.light .hero-section {
+  background-color: #ffffff;
+  color: #111111;
+}
+body.light .hero-title {
+  color: #111111;
+}
+body.light .hero-desc {
+  color: #333333;
+}
+body.light .hero-btn-primary {
+  background-color: crimson;
+  color: #fff;
+}
+body.light .hero-btn-primary:hover {
+  background-color: #b71c1c;
+}
+body.light .hero-btn-secondary {
+  border: 1px solid #111;
+  color: #111;
+}
+body.light .hero-btn-secondary:hover {
+  background-color: #111;
+  color: #fff;
+}
+
+/* ===== Dark Mode ===== */
+body.dark .navbar {
+  background-color: #111111;
+  color: #ffffff;
+}
+body.dark .logo {
+  color: #ffffff;
+}
+body.dark .nav-link {
+  color: #ffffff;
+  transition: color 0.3s;
+}
+body.dark .nav-link:hover {
+  color: #38bdf8;
+}
+body.dark .theme-toggle {
+  background-color: #f1f1f1;
+  color: #111;
+}
+
+body.dark .hero-section {
+  background-color: #111111;
+  color: #f1f1f1;
+}
+body.dark .hero-title {
+  color: #ffffff;
+}
+body.dark .hero-desc {
+  color: #cccccc;
+}
+body.dark .hero-btn-primary {
+  background-color: crimson;
+  color: #ffffff;
+}
+body.dark .hero-btn-primary:hover {
+  background-color: #e63946;
+}
+body.dark .hero-btn-secondary {
+  border: 1px solid #fff;
+  color: #fff;
+}
+body.dark .hero-btn-secondary:hover {
+  background-color: #fff;
+  color: #111;
+}
+
+/* about section */
+
+/* ===== Light Mode ===== */
+body.light .about-section {
+  background-color: #ffffff;
+  color: #111111;
+}
+body.light .about-title {
+  color: #111111;
+}
+body.light .about-desc {
+  color: #333333;
+}
+body.light .about-badges .skill-badge {
+  color: #fff;
+}
+
+body.light .badge-frontend {
+  background-color: #3b82f6;
+} /* blue-600 */
+body.light .badge-backend {
+  background-color: #16a34a;
+} /* green-600 */
+body.light .badge-db {
+  background-color: #facc15;
+} /* yellow-600 */
+body.light .badge-dsa {
+  background-color: #a855f7;
+} /* purple-600 */
+body.light .about-btn {
+  background-color: crimson;
+  color: #fff;
+}
+body.light .about-btn:hover {
+  background-color: #b71c1c;
+  color: #fff;
+}
+
+/* ===== Dark Mode ===== */
+body.dark .about-section {
+  background-color: #111111;
+  color: #f1f1f1;
+}
+body.dark .about-title {
+  color: #ffffff;
+}
+body.dark .about-desc {
+  color: #cccccc;
+}
+body.dark .about-badges .skill-badge {
+  color: #111;
+}
+body.dark .badge-frontend {
+  background-color: #3b82f6;
+} /* blue-600 */
+body.dark .badge-backend {
+  background-color: #16a34a;
+} /* green-600 */
+body.dark .badge-db {
+  background-color: #facc15;
+} /* yellow-600 */
+body.dark .badge-dsa {
+  background-color: #a855f7;
+} /* purple-600 */
+body.dark .about-btn {
+  background-color: crimson;
+  color: #fff;
+}
+body.dark .about-btn:hover {
+  background-color: #e63946;
+  color: #fff;
+}
+
+/* my skill section */
+
+/* ===== Light Mode ===== */
+body.light .skill-section {
+  background-color: #ffffff;
+  color: #111111;
+}
+body.light .skill-title {
+  color: #111111;
+}
+body.light .skill-name {
+  color: #111111;
+}
+body.light .skill-level {
+  color: #555555;
+}
+body.light .skill-bar-bg {
+  background-color: #e5e7eb;
+} /* gray-200 */
+body.light .skill-html {
+  background-color: #f87171;
+} /* red-500 */
+body.light .skill-css {
+  background-color: #3b82f6;
+} /* blue-500 */
+body.light .skill-js {
+  background-color: #facc15;
+} /* yellow-400 */
+body.light .skill-react {
+  background-color: #06b6d4;
+} /* cyan-400 */
+body.light .skill-node {
+  background-color: #22c55e;
+} /* green-500 */
+body.light .skill-db {
+  background-color: #a3e635;
+} /* lime-500 */
+body.light .skill-python {
+  background-color: #6366f1;
+} /* indigo-500 */
+body.light .skill-dsa {
+  background-color: #a855f7;
+} /* purple-500 */
+
+/* ===== Dark Mode ===== */
+body.dark .skill-section {
+  background-color: #111111;
+  color: #f1f1f1;
+}
+body.dark .skill-title {
+  color: #ffffff;
+}
+body.dark .skill-name {
+  color: #ffffff;
+}
+body.dark .skill-level {
+  color: #cccccc;
+}
+body.dark .skill-bar-bg {
+  background-color: #1f2937;
+} /* gray-800 */
+body.dark .skill-html {
+  background-color: #f87171;
+}
+body.dark .skill-css {
+  background-color: #3b82f6;
+}
+body.dark .skill-js {
+  background-color: #facc15;
+}
+body.dark .skill-react {
+  background-color: #06b6d4;
+}
+body.dark .skill-node {
+  background-color: #22c55e;
+}
+body.dark .skill-db {
+  background-color: #a3e635;
+}
+body.dark .skill-python {
+  background-color: #6366f1;
+}
+body.dark .skill-dsa {
+  background-color: #a855f7;
+}
+
+/* Project section */
+
+/* ===== Light Mode ===== */
+body.light .projects-section {
+  background-color: #ffffff;
+  color: #111;
+}
+body.light .projects-title {
+  color: #111;
+}
+body.light .project-card {
+  background-color: #f3f4f6;
+  color: #111;
+}
+body.light .project-title {
+  color: #111;
+}
+body.light .project-desc {
+  color: #333;
+}
+body.light .project-btn-demo {
+  background-color: crimson;
+  color: #fff;
+}
+body.light .project-btn-demo:hover {
+  background-color: #b71c1c;
+}
+body.light .project-btn-github {
+  border: 1px solid #111;
+  color: #111;
+}
+body.light .project-btn-github:hover {
+  background-color: #111;
+  color: #fff;
+}
+
+/* ===== Dark Mode ===== */
+body.dark .projects-section {
+  background-color: #111111;
+  color: #f1f1f1;
+}
+body.dark .projects-title {
+  color: #fff;
+}
+body.dark .project-card {
+  background-color: #1f2937;
+  color: #f1f1f1;
+}
+body.dark .project-title {
+  color: #fff;
+}
+body.dark .project-desc {
+  color: #cccccc;
+}
+body.dark .project-btn-demo {
+  background-color: crimson;
+  color: #fff;
+}
+body.dark .project-btn-demo:hover {
+  background-color: #e63946;
+}
+body.dark .project-btn-github {
+  border: 1px solid #fff;
+  color: #fff;
+}
+body.dark .project-btn-github:hover {
+  background-color: #fff;
+  color: #111;
+}
+
+/* contact section */
+
+/* ===== Light Mode ===== */
+body.light .contact-section {
+  background-color: #ffffff;
+  color: #111;
+}
+body.light .contact-title {
+  color: #111;
+}
+body.light .contact-desc {
+  color: #333;
+}
+body.light .contact-input {
+  background-color: #f3f4f6;
+  color: #111;
+}
+body.light .contact-input:focus {
+  border-color: crimson;
+  outline: none;
+}
+body.light .contact-btn {
+  background-color: crimson;
+  color: #fff;
+}
+body.light .contact-btn:hover {
+  background-color: #b71c1c;
+  color: #fff;
+}
+body.light .contact-socials .social-icon {
+  color: #555;
+}
+body.light .contact-socials .social-icon:hover {
+  color: crimson;
+}
+
+/* ===== Dark Mode ===== */
+body.dark .contact-section {
+  background-color: #111111;
+  color: #f1f1f1;
+}
+body.dark .contact-title {
+  color: #fff;
+}
+body.dark .contact-desc {
+  color: #ccc;
+}
+body.dark .contact-input {
+  background-color: #1f2937;
+  border: 1px solid #374151;
+  color: #f1f1f1;
+}
+body.dark .contact-input:focus {
+  border-color: crimson;
+  outline: none;
+}
+body.dark .contact-btn {
+  background-color: crimson;
+  color: #fff;
+}
+body.dark .contact-btn:hover {
+  background-color: #e63946;
+  color: #fff;
+}
+body.dark .contact-socials .social-icon {
+  color: #aaa;
+}
+body.dark .contact-socials .social-icon:hover {
+  color: crimson;
+}
+
+/* Footer */
+
+/* ===== Light Mode ===== */
+body.light .footer-section {
+  background-color: #ffffff;
+  color: #111;
+}
+body.light .footer-logo {
+  color: crimson;
+}
+body.light .footer-links a {
+  color: #111;
+  transition: color 0.3s;
+}
+body.light .footer-links a:hover {
+  color: crimson;
+}
+body.light .footer-socials .social-icon {
+  color: #555;
+  transition: color 0.3s;
+}
+body.light .footer-socials .social-icon:hover {
+  color: crimson;
+}
+body.light .footer-copy {
+  color: #555;
+}
+
+/* ===== Dark Mode ===== */
+body.dark .footer-section {
+  background-color: #111111;
+  color: #f1f1f1;
+}
+body.dark .footer-logo {
+  color: crimson;
+}
+body.dark .footer-links a {
+  color: #f1f1f1;
+  transition: color 0.3s;
+}
+body.dark .footer-links a:hover {
+  color: crimson;
+}
+body.dark .footer-socials .social-icon {
+  color: #aaa;
+  transition: color 0.3s;
+}
+body.dark .footer-socials .social-icon:hover {
+  color: crimson;
+}
+body.dark .footer-copy {
+  color: #aaa;
+}
