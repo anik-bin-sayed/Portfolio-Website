@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
-import './Navbar.css'
+import React, { useState, useEffect, useRef } from "react";
+import './Navbar.css';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [theme, setTheme] = useState("light");
+    const menuRef = useRef(null); // menu + button এর wrapper ref
 
     // load theme from localStorage
     useEffect(() => {
         const savedTheme = localStorage.getItem("theme") || "light";
         setTheme(savedTheme);
-        document.body.className = savedTheme; // ✅ body তে class বসাচ্ছি
+        document.body.className = savedTheme;
     }, []);
 
     // apply theme
@@ -18,8 +19,20 @@ const Navbar = () => {
         localStorage.setItem("theme", theme);
     }, [theme]);
 
+    // window click listener (close only when clicked outside)
+    useEffect(() => {
+        const handleWindowClick = (e) => {
+            if (menuRef.current && !menuRef.current.contains(e.target)) {
+                setIsOpen(false);
+            }
+        };
+
+        window.addEventListener("click", handleWindowClick);
+        return () => window.removeEventListener("click", handleWindowClick);
+    }, []);
+
     return (
-        <header className="fixed top-0 left-0 w-full z-20 shadow-lg navbar">
+        <header className="fixed top-0 left-0 w-full z-20 shadow-lg navbar" ref={menuRef}>
             <div className="container mx-auto flex justify-between items-center w-[90%] md:w-[80%] py-4">
                 {/* Logo */}
                 <h1 className="text-2xl font-bold tracking-tight logo flex">
@@ -46,7 +59,10 @@ const Navbar = () => {
                 {/* Mobile Hamburger Button */}
                 <button
                     className="md:hidden menu-btn"
-                    onClick={() => setIsOpen(!isOpen)}
+                    onClick={(e) => {
+                        e.stopPropagation(); // prevent immediate close
+                        setIsOpen(!isOpen);
+                    }}
                 >
                     <svg
                         className="w-7 h-7"
@@ -66,7 +82,10 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Menu */}
-            <div className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? "max-h-96" : "max-h-0"}`}>
+            <div
+                className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? "max-h-96" : "max-h-0"
+                    }`}
+            >
                 <ul className="flex flex-col items-center py-4 space-y-4 mobile-menu">
                     <li><a href="#home" className="nav-link" onClick={() => setIsOpen(false)}>Home</a></li>
                     <li><a href="#about" className="nav-link" onClick={() => setIsOpen(false)}>About Me</a></li>
@@ -77,7 +96,10 @@ const Navbar = () => {
                     {/* Mobile Theme Toggle */}
                     <li>
                         <button
-                            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                            onClick={() => {
+                                setTheme(theme === "light" ? "dark" : "light");
+                                setIsOpen(false);
+                            }}
                             className="px-3 py-1 rounded-md theme-toggle"
                         >
                             {theme === "light" ? "🌙 Dark" : "☀️ Light"}

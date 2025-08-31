@@ -1,34 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import profileImage from "../../assets/anik.jpg";
 
 const HeroSection = () => {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-    const [trailingPosition, setTrailingPosition] = useState({ x: 0, y: 0 });
 
-    // Track mouse
-    useEffect(() => {
-        const handleMouseMove = (e) => {
-            setMousePosition({ x: e.clientX, y: e.clientY });
-        };
-
-        window.addEventListener("mousemove", handleMouseMove);
-        return () => window.removeEventListener("mousemove", handleMouseMove);
-    }, []);
-
-    // Smooth trailing cursor
-    useEffect(() => {
-        let animationFrame;
-        const follow = () => {
-            setTrailingPosition((prev) => ({
-                x: prev.x + (mousePosition.x - prev.x) * 0.1,
-                y: prev.y + (mousePosition.y - prev.y) * 0.1,
-            }));
-            animationFrame = requestAnimationFrame(follow);
-        };
-
-        follow();
-        return () => cancelAnimationFrame(animationFrame);
-    }, [mousePosition]);
 
     return (
         <section
@@ -71,21 +45,7 @@ const HeroSection = () => {
                 />
             </div>
 
-            {/* 🔹 Custom Cursor (small dot) */}
-            <div
-                className="fixed top-0 left-0 w-3 h-3 bg-crimson rounded-full pointer-events-none z-50"
-                style={{
-                    transform: `translate(${mousePosition.x - 6}px, ${mousePosition.y - 6}px)`,
-                }}
-            ></div>
 
-            {/* 🔹 Trailing Cursor (big glow) */}
-            <div
-                className="fixed top-0 left-0 w-12 h-12 rounded-full bg-crimson/30 blur-2xl pointer-events-none z-40"
-                style={{
-                    transform: `translate(${trailingPosition.x - 24}px, ${trailingPosition.y - 24}px)`,
-                }}
-            ></div>
         </section>
     );
 };

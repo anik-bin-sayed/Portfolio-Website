@@ -347,18 +347,7 @@ body.light .contact-input:focus {
   outline: none;
 }
 body.light .contact-btn {
-  background-color: crimson;
   color: #fff;
-}
-body.light .contact-btn:hover {
-  background-color: #b71c1c;
-  color: #fff;
-}
-body.light .contact-socials .social-icon {
-  color: #555;
-}
-body.light .contact-socials .social-icon:hover {
-  color: crimson;
 }
 
 /* ===== Dark Mode ===== */
@@ -380,20 +369,6 @@ body.dark .contact-input {
 body.dark .contact-input:focus {
   border-color: crimson;
   outline: none;
-}
-body.dark .contact-btn {
-  background-color: crimson;
-  color: #fff;
-}
-body.dark .contact-btn:hover {
-  background-color: #e63946;
-  color: #fff;
-}
-body.dark .contact-socials .social-icon {
-  color: #aaa;
-}
-body.dark .contact-socials .social-icon:hover {
-  color: crimson;
 }
 
 /* Footer */
