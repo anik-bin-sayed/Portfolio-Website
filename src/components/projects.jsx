@@ -12,7 +12,7 @@ const Projects = () => {
             description: "A modern responsive portfolio built with React and Tailwind CSS.",
             image: portfolioTitleImage,
             demo: "#",
-            github: "#"
+            github: "https://github.com/anik-bin-sayed/Portfolio-Website"
         },
         {
             id: 2,
