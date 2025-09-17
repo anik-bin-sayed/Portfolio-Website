@@ -25,10 +25,10 @@ const Projects = () => {
         {
             id: 3,
             title: "Blog Platform",
-            description: "A feature-rich blogging app built with Django and React.",
+            description: "A frontend-only feature-rich blogging app built with React tailwind CSS.",
             image: blogTitleImage,
-            demo: "#",
-            github: "#"
+            demo: "https://shofia-blog.netlify.app/",
+            github: "https://github.com/anik-bin-sayed/Blog_website"
         }
     ];
     return (
