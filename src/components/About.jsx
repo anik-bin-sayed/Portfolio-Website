@@ -36,10 +36,11 @@ const About = () => {
 
                     {/* Call-to-Action Button */}
                     <a
-                        href="#projects"
+                        href="/cv"
+                        target='_blank'
                         className="self-start px-6 py-3 rounded-lg font-semibold about-btn"
                     >
-                        Download CV
+                        Resume is here
                     </a>
                 </div>
             </div>
