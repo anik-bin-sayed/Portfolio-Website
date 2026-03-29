@@ -1,61 +1,209 @@
-/* 🌞 Light Mode */
-body.light .hero-section {
-  background-color: #ffffff;
-  color: #111111;
+:root {
+  /* Light Mode */
+  --hero-bg: #ffffff;
+  --hero-text: #111111;
+  --hero-desc: #333333;
+
+  --primary-bg: crimson;
+  --primary-hover: #b71c1c;
+  --primary-text: #ffffff;
+
+  --secondary-border: #111111;
+  --secondary-text: #111111;
+  --secondary-hover-bg: #111111;
+  --secondary-hover-text: #ffffff;
 }
 
-body.light .hero-title {
-  color: #111111;
+body.dark {
+  /* Dark Mode */
+  --hero-bg: #111111;
+  --hero-text: #ffffff;
+  --hero-desc: #cccccc;
+
+  --primary-bg: crimson;
+  --primary-hover: #e63946;
+  --primary-text: #ffffff;
+
+  --secondary-border: #ffffff;
+  --secondary-text: #ffffff;
+  --secondary-hover-bg: #ffffff;
+  --secondary-hover-text: #111111;
 }
 
-body.light .hero-desc {
-  color: #333333;
+/* Hero Section */
+.hero-section {
+  background-color: var(--hero-bg);
+  color: var(--hero-text);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
-body.light .hero-btn-primary {
-  background-color: crimson;
-  color: #ffffff;
-}
-body.light .hero-btn-primary:hover {
-  background-color: #b71c1c;
+.hero-title {
+  color: var(--hero-text);
 }
 
-body.light .hero-btn-secondary {
-  border: 1px solid #111111;
-  color: #111111;
-}
-body.light .hero-btn-secondary:hover {
-  background-color: #111111;
-  color: #ffffff;
+.hero-desc {
+  color: var(--hero-desc);
 }
 
-/* 🌙 Dark Mode */
-body.dark .hero-section {
-  background-color: #111111;
-  color: #f1f1f1;
+/* button */
+body.light .btn2 {
+  position: relative;
+  z-index: 1;
+  background: none;
+  color: #111;
+  border: 2px solid #111;
+  transition:
+    color 0.3s,
+    border-color 0.3s;
 }
 
-body.dark .hero-title {
-  color: #ffffff;
+body.light .btn2::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0%;
+  height: 100%;
+  background: #111;
+  transition: all 0.3s ease;
+  z-index: -1;
 }
 
-body.dark .hero-desc {
-  color: #cccccc;
+body.light .btn2:hover {
+  color: #fff;
+  border-color: #fff;
 }
 
-body.dark .hero-btn-primary {
-  background-color: crimson;
-  color: #ffffff;
-}
-body.dark .hero-btn-primary:hover {
-  background-color: #e63946;
+body.light .btn2:hover::after {
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
-body.dark .hero-btn-secondary {
-  border: 1px solid #ffffff;
-  color: #ffffff;
+/* dark */
+body.dark .btn2 {
+  position: relative;
+  z-index: 1;
+  background: none;
+  color: #fff;
+  border: 2px solid #fff;
+  transition:
+    color 0.3s,
+    border-color 0.3s;
 }
-body.dark .hero-btn-secondary:hover {
-  background-color: #ffffff;
-  color: #111111;
+
+body.dark .btn2::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0%;
+  height: 100%;
+  background: #fff;
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+body.dark .btn2:hover {
+  color: #111;
+}
+
+body.dark .btn2:hover::after {
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* cursor effect */
+body.light .particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+body.light .particle {
+  position: absolute;
+  background: crimson;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.dark .particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+body.dark .particle {
+  position: absolute;
+  background: crimson;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Image style */
+
+.hero-image-liquid {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.light .hero-image-liquid::before {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background: #f4f3f3;
+  border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
+  animation: liquidMove 14s linear infinite;
+  filter: blur(2px);
+}
+
+body.dark .hero-image-liquid::before {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background: #2b2a2a;
+  border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
+  animation: liquidMove 14s linear infinite;
+  filter: blur(2px);
+}
+
+.hero-image-liquid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes liquidMove {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.05);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
 }

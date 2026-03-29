@@ -1,0 +1,79 @@
+:root {
+  --contact-bg: #ffffff;
+  --contact-text: #111111;
+  --contact-desc: #333333;
+  --contact-input-bg: #f3f4f6;
+  --contact-input-text: #111111;
+  --contact-input-border: #d1d5db;
+  --contact-btn-bg: crimson;
+  --contact-btn-text: #ffffff;
+  --contact-focus-border: crimson;
+}
+
+body.dark {
+  --contact-bg: #111111;
+  --contact-text: #f1f1f1;
+  --contact-desc: #cccccc;
+  --contact-input-bg: #1f2937;
+  --contact-input-text: #f1f1f1;
+  --contact-input-border: #374151;
+  --contact-btn-bg: crimson;
+  --contact-btn-text: #ffffff;
+  --contact-focus-border: crimson;
+}
+
+.contact-section {
+  background-color: var(--contact-bg);
+  color: var(--contact-text);
+  padding: 4rem 2rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.contact-title {
+  color: var(--contact-text);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.contact-desc {
+  color: var(--contact-desc);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.contact-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--contact-input-border);
+  background-color: var(--contact-input-bg);
+  color: var(--contact-input-text);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.contact-input:focus {
+  border-color: var(--contact-focus-border);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.3);
+}
+
+.contact-btn {
+  background-color: var(--contact-btn-bg);
+  color: var(--contact-btn-text);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.contact-btn:hover {
+  background-color: darkred;
+  transform: translateY(-2px);
+}

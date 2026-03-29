@@ -1,17 +1,8 @@
-import React from 'react'
-import { Routes, Route, Link } from "react-router-dom";
-import Resume from './Resume'
-import CurriculumVitae from './components/Curriculum-vitae';
+import React from "react";
+import Index from "./Routes/Index";
 
 const App = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<Resume />} />
-      <Route path="/cv" element={<CurriculumVitae />} />
-      {/* <Route path="/contact" element={<Contact />} /> */}
-    </Routes>
+  return <Index />;
+};
 
-  )
-}
-
-export default App
+export default App;

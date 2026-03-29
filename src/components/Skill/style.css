@@ -1,0 +1,95 @@
+:root {
+  /* Light Mode */
+  --skills-bg: #ffffff;
+  --skills-text: #111111;
+  --skills-title: #111111;
+  --skills-level: #555555;
+  --skills-bar-bg: #e5e7eb;
+
+  /* Skill Colors */
+  --skill-html: #f87171;
+  --skill-css: #3b82f6;
+  --skill-js: #facc15;
+  --skill-react: #06b6d4;
+  --skill-node: #22c55e;
+  --skill-db: #a3e635;
+  --skill-python: #6366f1;
+  --skill-dsa: #a855f7;
+}
+
+body.dark {
+  /* Dark Mode */
+  --skills-bg: #111111;
+  --skills-text: #f1f1f1;
+  --skills-title: #ffffff;
+  --skills-level: #cccccc;
+  --skills-bar-bg: #1f2937;
+}
+
+/* Skills Section Styling */
+.skill-section {
+  background-color: var(--skills-bg);
+  color: var(--skills-text);
+  padding: 4rem 2rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.skill-title {
+  color: var(--skills-title);
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+/* Skill Item */
+.skill-name {
+  color: var(--skills-title);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.skill-level {
+  color: var(--skills-level);
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.skill-bar-bg {
+  width: 100%;
+  height: 0.6rem;
+  background-color: var(--skills-bar-bg);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+/* Skill Bars */
+.skill-bar {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.6s ease;
+}
+
+.skill-html {
+  background-color: var(--skill-html);
+}
+.skill-css {
+  background-color: var(--skill-css);
+}
+.skill-js {
+  background-color: var(--skill-js);
+}
+.skill-react {
+  background-color: var(--skill-react);
+}
+.skill-node {
+  background-color: var(--skill-node);
+}
+.skill-db {
+  background-color: var(--skill-db);
+}
+.skill-python {
+  background-color: var(--skill-python);
+}
+.skill-dsa {
+  background-color: var(--skill-dsa);
+}
