@@ -1,106 +1,167 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import profileImage from "../../assets/anik.jpg";
-import "./hero.css";
 import LinkTag from "../utils/Link/LinkTag";
+import SocialIcons from "../utils/SocialIcons/SocialIcons";
 
 const HeroSection = () => {
-  const particlesRef = useRef(null);
+  const imageRef = useRef(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e) => {
+    if (!imageRef.current) return;
+    const rect = imageRef.current.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const rotateX = (y - rect.height / 2) / 25;
+    const rotateY = (rect.width / 2 - x) / 25;
+
+    imageRef.current.style.transform = `
+      perspective(1200px)
+      rotateX(${rotateX}deg)
+      rotateY(${rotateY}deg)
+      scale(1.04)
+    `;
+  };
+
+  const handleMouseLeave = () => {
+    if (!imageRef.current) return;
+    imageRef.current.style.transform =
+      "perspective(1200px) rotateX(0) rotateY(0) scale(1)";
+  };
 
   useEffect(() => {
-    const particlesContainer = particlesRef.current;
-    if (!particlesContainer) return; // Ref not mounted yet
+    let frame;
 
-    const particleCount = 80;
+    const handleMove = (e) => {
+      if (frame) return;
 
-    for (let i = 0; i < particleCount; i++) {
-      createParticle();
-    }
+      frame = requestAnimationFrame(() => {
+        setMousePosition({ x: e.clientX, y: e.clientY });
+        frame = null;
+      });
+    };
 
-    function createParticle() {
-      const particle = document.createElement("div");
-      particle.className = "particle";
-
-      // Random size
-      const size = Math.random() * 3 + 1;
-      particle.style.width = `${size}px`;
-      particle.style.height = `${size}px`;
-
-      // Initial position
-      const pos = resetParticle(particle);
-
-      particlesContainer.appendChild(particle);
-      animateParticle(particle, pos);
-    }
-
-    function resetParticle(particle) {
-      const posX = Math.random() * 100;
-      const posY = Math.random() * 100;
-
-      particle.style.left = `${posX}%`;
-      particle.style.top = `${posY}%`;
-      particle.style.opacity = "0";
-
-      return { x: posX, y: posY };
-    }
-
-    function animateParticle(particle, pos) {
-      const duration = Math.random() * 10 + 10;
-      const delay = Math.random() * 5;
-
-      setTimeout(() => {
-        particle.style.transition = `all ${duration}s linear`;
-        particle.style.opacity = Math.random() * 0.3 + 0.1;
-
-        const moveX = pos.x + (Math.random() * 20 - 10);
-        const moveY = pos.y - Math.random() * 30;
-
-        particle.style.left = `${moveX}%`;
-        particle.style.top = `${moveY}%`;
-
-        setTimeout(() => {
-          const newPos = resetParticle(particle);
-          animateParticle(particle, newPos);
-        }, duration * 300);
-      }, delay * 300);
-    }
+    window.addEventListener("mousemove", handleMove);
+    return () => window.removeEventListener("mousemove", handleMove);
   }, []);
-  return (
-    <section
-      id="home"
-      className="hero-section flex flex-col md:flex-row items-center justify-evenly min-h-screen px-6 md:px-20 py-20 md:pt-32 md:pb-20 overflow-hidden"
-    >
-      <div className="particles-container" ref={particlesRef}></div>
-      {/* Left Content */}
-      <div className="text-center md:text-left max-w-lg flex flex-col justify-center h-full z-10">
-        <h1 className="text-4xl md:text-6xl font-extrabold leading-tight hero-title">
-          Hi, I'm <span className="text-[crimson]">Anik</span>
-        </h1>
-        <p className="text-lg md:text-xl mt-4 hero-desc">
-          I build exceptional and accessible digital experiences for the web.
-          Focused on creating elegant solutions to complex problems.
-        </p>
-        {/* Buttons */}
-        <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-          <LinkTag url="https://github.com/anik-bin-sayed?tab=repositories">
-            Github
-          </LinkTag>
 
-          <a
-            href="#contact"
-            className="btn2 relative flex items-center justify-center rounded-lg cursor-pointer overflow-hidden px-6 py-2 font-semibold"
-          >
-            Contact Me
-          </a>
-        </div>
+  const particles = useRef(
+    [...Array(20)].map(() => ({
+      size: Math.random() * 4 + 2,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      delay: Math.random() * 10,
+      duration: Math.random() * 15 + 10,
+    })),
+  ).current;
+
+  return (
+    <section className="relative min-h-screen flex items-center justify-center bg-[#050505] text-white overflow-hidden px-4 sm:px-6">
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-[#0f0f0f] to-[#050505]" />
+      <div
+        className="absolute w-[500px] h-[500px] bg-red-600/20 blur-[80px] rounded-full"
+        style={{
+          left: `${mousePosition.x * 0.02}px`,
+          top: `${mousePosition.y * 0.02}px`,
+        }}
+      />
+      <div
+        className="absolute w-[400px] h-[400px] bg-blue-600/20 blur-[70px] rounded-full"
+        style={{
+          right: `${mousePosition.x * 0.01}px`,
+          bottom: `${mousePosition.y * 0.01}px`,
+        }}
+      />
+      <div className="absolute inset-0 pointer-events-none">
+        {particles.map((p, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full bg-white/5 animate-float"
+            style={{
+              width: `${p.size}px`,
+              height: `${p.size}px`,
+              left: `${p.left}%`,
+              top: `${p.top}%`,
+              animationDelay: `${p.delay}s`,
+              animationDuration: `${p.duration}s`,
+            }}
+          />
+        ))}
       </div>
 
-      {/* Right Image */}
-      <div className="hero-image-liquid mt-10 md:mt-0 flex justify-center z-10">
-        <img
-          src={profileImage}
-          alt="Profile"
-          className="rounded-full w-64 h-64 object-cover border-4 border-crimson shadow-lg"
-        />
+      <div className="max-w-7xl w-full grid lg:grid-cols-2 gap-10 items-center z-10 py-20">
+        <div className="space-y-6 text-center lg:text-left">
+          <p className="text-sm text-red-400 uppercase tracking-widest">
+            Available for work
+          </p>
+
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold">
+            Hi, I'm <br />
+            <span className="bg-gradient-to-r from-red-500 to-orange-400 bg-clip-text text-transparent">
+              Anik
+            </span>
+          </h1>
+
+          <p className="text-gray-400 max-w-lg mx-auto lg:mx-0">
+            I build exceptional and accessible digital experiences for the web.
+            Focused on creating elegant solutions to complex problems.
+          </p>
+          <div className="flex gap-4 justify-center lg:justify-start">
+            <LinkTag
+              url="https://github.com/anik-bin-sayed"
+              className="px-6 py-3 rounded-lg bg-red-600 hover:bg-red-700 transition font-semibold shadow-lg shadow-red-600/30"
+            >
+              View Work (Github)
+            </LinkTag>
+
+            <a
+              href="#contact"
+              className="px-6 py-3 rounded-lg border border-gray-600 hover:border-red-500 transition"
+            >
+              Contact
+            </a>
+          </div>
+          <div className="flex flex-wrap gap-2 justify-center lg:justify-start pt-4">
+            {["React", "Node.js", "Django", "FastApi", "Tailwind"].map(
+              (item) => (
+                <span
+                  key={item}
+                  className="px-3 py-1 text-sm bg-white/5 border border-white/10 rounded-full hover:border-red-500 transition"
+                >
+                  {item}
+                </span>
+              ),
+            )}
+          </div>
+        </div>
+        <div className="flex justify-center lg:justify-end relative">
+          <div
+            ref={imageRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            className="relative transition-transform duration-300"
+            style={{ transformStyle: "preserve-3d" }}
+          >
+            <div className="absolute -inset-6 bg-gradient-to-r from-red-500/20 via-purple-500/20 to-blue-500/20 blur-2xl rounded-full" />
+            <div className="absolute -inset-3 rounded-full border border-red-500/30 animate-spin-slow"></div>
+            <div className="absolute -inset-3 rounded-full border border-dashed border-white/10 animate-spin-slow-reverse"></div>
+            <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border border-white/10 shadow-xl">
+              <img
+                src={profileImage}
+                alt="Anik"
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent"></div>
+            </div>
+            <div className="absolute -top-4 -right-4 w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
+            <div className="absolute -bottom-3 -left-3 w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+          </div>
+          <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 lg:left-auto lg:right-0 lg:translate-x-0 flex gap-3 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 shadow-lg">
+            <SocialIcons />
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -1,209 +1,38 @@
-:root {
-  /* Light Mode */
-  --hero-bg: #ffffff;
-  --hero-text: #111111;
-  --hero-desc: #333333;
+/* Animation */
 
-  --primary-bg: crimson;
-  --primary-hover: #b71c1c;
-  --primary-text: #ffffff;
-
-  --secondary-border: #111111;
-  --secondary-text: #111111;
-  --secondary-hover-bg: #111111;
-  --secondary-hover-text: #ffffff;
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
-
-body.dark {
-  /* Dark Mode */
-  --hero-bg: #111111;
-  --hero-text: #ffffff;
-  --hero-desc: #cccccc;
-
-  --primary-bg: crimson;
-  --primary-hover: #e63946;
-  --primary-text: #ffffff;
-
-  --secondary-border: #ffffff;
-  --secondary-text: #ffffff;
-  --secondary-hover-bg: #ffffff;
-  --secondary-hover-text: #111111;
+@keyframes spin-slow-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
 }
-
-/* Hero Section */
-.hero-section {
-  background-color: var(--hero-bg);
-  color: var(--hero-text);
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
-}
-
-.hero-title {
-  color: var(--hero-text);
-}
-
-.hero-desc {
-  color: var(--hero-desc);
-}
-
-/* button */
-body.light .btn2 {
-  position: relative;
-  z-index: 1;
-  background: none;
-  color: #111;
-  border: 2px solid #111;
-  transition:
-    color 0.3s,
-    border-color 0.3s;
-}
-
-body.light .btn2::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0%;
-  height: 100%;
-  background: #111;
-  transition: all 0.3s ease;
-  z-index: -1;
-}
-
-body.light .btn2:hover {
-  color: #fff;
-  border-color: #fff;
-}
-
-body.light .btn2:hover::after {
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-/* dark */
-body.dark .btn2 {
-  position: relative;
-  z-index: 1;
-  background: none;
-  color: #fff;
-  border: 2px solid #fff;
-  transition:
-    color 0.3s,
-    border-color 0.3s;
-}
-
-body.dark .btn2::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0%;
-  height: 100%;
-  background: #fff;
-  transition: all 0.3s ease;
-  z-index: -1;
-}
-
-body.dark .btn2:hover {
-  color: #111;
-}
-
-body.dark .btn2:hover::after {
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-/* cursor effect */
-body.light .particles-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 3;
-  pointer-events: none;
-}
-
-body.light .particle {
-  position: absolute;
-  background: crimson;
-  border-radius: 50%;
-  opacity: 0;
-  pointer-events: none;
-}
-
-body.dark .particles-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 3;
-  pointer-events: none;
-}
-
-body.dark .particle {
-  position: absolute;
-  background: crimson;
-  border-radius: 50%;
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Image style */
-
-.hero-image-liquid {
-  position: relative;
-  width: 260px;
-  height: 260px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-body.light .hero-image-liquid::before {
-  content: "";
-  position: absolute;
-  width: 320px;
-  height: 320px;
-  background: #f4f3f3;
-  border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
-  animation: liquidMove 14s linear infinite;
-  filter: blur(2px);
-}
-
-body.dark .hero-image-liquid::before {
-  content: "";
-  position: absolute;
-  width: 320px;
-  height: 320px;
-  background: #2b2a2a;
-  border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
-  animation: liquidMove 14s linear infinite;
-  filter: blur(2px);
-}
-
-.hero-image-liquid img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  position: relative;
-  z-index: 2;
-}
-
-@keyframes liquidMove {
-  0% {
-    transform: rotate(0deg) scale(1);
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
   }
   50% {
-    transform: rotate(180deg) scale(1.05);
+    transform: translateY(-15px);
   }
-  100% {
-    transform: rotate(360deg) scale(1);
-  }
+}
+
+/* Animation Classes */
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}
+.animate-spin-slow-reverse {
+  animation: spin-slow-reverse 15s linear infinite;
+}
+.animate-float {
+  animation: float 8s ease-in-out infinite;
 }

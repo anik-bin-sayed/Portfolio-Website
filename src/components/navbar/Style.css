@@ -1,5 +1,4 @@
 :root {
-  /* Light Mode */
   --navbar-bg: #ffffff;
   --navbar-text: #111111;
   --nav-link: #111111;
@@ -10,20 +9,6 @@
 
   --navbar-glow: rgba(70, 78, 93, 0.25);
   --particle-color: #f1f1f1;
-}
-
-body.dark {
-  /* Dark Mode */
-  --navbar-bg: #111111;
-  --navbar-text: #ffffff;
-  --nav-link: #ffffff;
-  --nav-link-hover: crimson;
-  --logo-color: #ffffff;
-  --theme-toggle-bg: #f1f1f1;
-  --theme-toggle-text: #111111;
-
-  --navbar-glow: rgba(193, 200, 213, 0.25);
-  --particle-color: blue;
 }
 
 /* Navbar Background Animation */

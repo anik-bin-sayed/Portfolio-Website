@@ -1,16 +1,16 @@
 import React, { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import Loader from "../components/Loader";
+import NotFound from "../Pages/NotFound/NotFound";
 
 const Resume = lazy(() => import("../Pages/Resume"));
-const CurriculumVitae = lazy(() => import("../Pages/Curriculum-vitae"));
 
 const Index = () => {
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<Resume />} />
-        <Route path="/cv" element={<CurriculumVitae />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
   );

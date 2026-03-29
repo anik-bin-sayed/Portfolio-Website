@@ -3,37 +3,24 @@
 html {
   scroll-behavior: smooth;
 }
+
 * {
   box-sizing: border-box;
 }
 
-.btn {
-  position: relative;
-  border: 0;
-  outline: 0;
-  background: none;
-  border: 1px solid crimson;
-  z-index: 1;
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-.btn:hover {
-  color: #fff;
-  border-color: #fff;
+::-webkit-scrollbar-track {
+  background: #1a1a2e;
 }
 
-.btn::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0%;
-  height: 100%;
-  background: #6c5ce7;
-  border: 6px;
+::-webkit-scrollbar-thumb {
+  background: #dc2626;
+  border-radius: 4px;
 }
 
-.btn:hover::after {
-  top: 0%;
-  left: 0%;
-  width: 100%;
+::-webkit-scrollbar-thumb:hover {
+  background: #ef4444;
 }

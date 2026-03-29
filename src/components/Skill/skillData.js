@@ -6,5 +6,5 @@ export const skills = [
   { name: "Node.js / Express", level: 75, color: "skill-node" },
   { name: "MongoDB / MySQL", level: 70, color: "skill-db" },
   { name: "Python / Django", level: 80, color: "skill-python" },
-  { name: "Data Structures / Algorithms", level: 90, color: "skill-dsa" },
+  { name: "Data Structures / Algorithms", level: 80, color: "skill-dsa" },
 ];

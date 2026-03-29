@@ -1,28 +1,34 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
-import { MdDarkMode, MdLightMode } from "react-icons/md";
+import React, { useState, useRef, useEffect } from "react";
 
 import "./Style.css";
-import { ThemeContext } from "../Theme/ThemeContext";
+
 import { menuItems } from "./navUtils";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const menuRef = useRef(null);
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const [scrolled, setScrolled] = useState(false);
 
+  const menuRef = useRef(null);
   const particlesRef = useRef(null);
+
+  // Scroll effect (glass + shrink)
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const navbar = menuRef.current;
-    if (!navbar) return;
-
     const particlesContainer = particlesRef.current;
-    const particleCount = 30; // navbar area particles
+    if (!navbar || !particlesContainer) return;
 
-    // create initial particles
-    for (let i = 0; i < particleCount; i++) {
-      createParticle();
-    }
+    const particleCount = 20;
+
+    for (let i = 0; i < particleCount; i++) createParticle();
 
     function createParticle() {
       const particle = document.createElement("div");
@@ -34,65 +40,63 @@ const Navbar = () => {
 
       resetParticle(particle);
       particlesContainer.appendChild(particle);
+
       animateParticle(particle);
     }
 
     function resetParticle(particle) {
-      const posX = Math.random() * 100;
-      const posY = Math.random() * 100;
+      const x = Math.random() * 100;
+      const y = Math.random() * 100;
 
-      particle.style.left = `${posX}%`;
-      particle.style.top = `${posY}%`;
+      particle.style.left = `${x}%`;
+      particle.style.top = `${y}%`;
       particle.style.opacity = "0";
 
-      return { x: posX, y: posY };
+      return { x, y };
     }
 
     function animateParticle(particle) {
       const pos = resetParticle(particle);
+
       const duration = Math.random() * 5 + 5;
-      const delay = Math.random() * 3;
 
       setTimeout(() => {
         particle.style.transition = `all ${duration}s linear`;
         particle.style.opacity = Math.random() * 0.3 + 0.1;
 
-        const moveX = pos.x + (Math.random() * 10 - 5);
-        const moveY = pos.y + (Math.random() * 10 - 5);
-
-        particle.style.left = `${moveX}%`;
-        particle.style.top = `${moveY}%`;
+        particle.style.left = `${pos.x + (Math.random() * 10 - 5)}%`;
+        particle.style.top = `${pos.y + (Math.random() * 10 - 5)}%`;
 
         setTimeout(() => animateParticle(particle), duration * 1000);
-      }, delay * 1000);
+      }, Math.random() * 2000);
     }
 
-    // Mouse move inside navbar only
     const handleMouseMove = (e) => {
       const rect = navbar.getBoundingClientRect();
-      const mouseX = ((e.clientX - rect.left) / rect.width) * 100;
-      const mouseY = ((e.clientY - rect.top) / rect.height) * 100;
 
-      // particle effect
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+
       const particle = document.createElement("div");
       particle.className = "particle";
-      const size = Math.random() * 4 + 2;
-      particle.style.width = `${size}px`;
-      particle.style.height = `${size}px`;
-      particle.style.left = `${mouseX}%`;
-      particle.style.top = `${mouseY}%`;
-      particle.style.opacity = "0.1";
+
+      particle.style.width = "4px";
+      particle.style.height = "4px";
+      particle.style.left = `${x}%`;
+      particle.style.top = `${y}%`;
+      particle.style.opacity = "0.2";
 
       particlesContainer.appendChild(particle);
 
       setTimeout(() => {
-        particle.style.transition = "all 2s ease-out";
-        particle.style.left = `${mouseX + (Math.random() * 10 - 5)}%`;
-        particle.style.top = `${mouseY + (Math.random() * 10 - 5)}%`;
+        particle.style.transition = "all 1.5s ease-out";
         particle.style.opacity = "0";
+        particle.style.transform = "scale(0.5)";
+        particle.style.left = `${x + (Math.random() * 10 - 5)}%`;
+        particle.style.top = `${y + (Math.random() * 10 - 5)}%`;
 
-        setTimeout(() => particle.remove(), 2000);
-      }, 10);
+        setTimeout(() => particle.remove(), 1500);
+      }, 50);
     };
 
     navbar.addEventListener("mousemove", handleMouseMove);
@@ -102,91 +106,68 @@ const Navbar = () => {
     };
   }, []);
 
-  // end hover effect
-
   return (
-    <header className="navbar top-0  w-full z-[9999] shadow-lg " ref={menuRef}>
+    <header
+      ref={menuRef}
+      className={`fixed top-0 w-full z-[9999] transition-all duration-300 ${
+        scrolled
+          ? "backdrop-blur-lg bg-black/60 shadow-xl py-2"
+          : "bg-transparent py-4"
+      }`}
+    >
       <div className="particles-container" ref={particlesRef}></div>
 
-      <div className="container mx-auto flex justify-between items-center w-[90%] md:w-[80%] py-4">
+      <div className="max-w-7xl mx-auto flex justify-between items-center w-[90%]">
         {/* Logo */}
-        <h1 className="text-2xl font-bold tracking-tight logo flex">
-          AN<p className="text-[crimson] font-bold px-2 text-3xl">i</p>K
+        <h1 className="text-2xl font-bold text-white tracking-tight flex items-center">
+          <span>AN</span>
+          <span className="text-red-500 text-3xl px-1">i</span>
+          <span>K</span>
         </h1>
 
         {/* Desktop Menu */}
-        <nav className="hidden md:flex items-center space-x-6 font-medium">
+        <nav className="hidden md:flex items-center space-x-8">
           {menuItems.map((item) => (
-            <a key={item.name} href={item.link} className="nav-link">
+            <a
+              key={item.name}
+              href={item.link}
+              className="relative text-gray-300 hover:text-white transition duration-300 group"
+            >
               {item.name}
+              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-red-500 group-hover:w-full transition-all duration-300"></span>
             </a>
           ))}
-
-          <button
-            onClick={toggleTheme}
-            className="ml-4 px-3 py-1 rounded-md theme-toggle"
-            aria-label="Toggle Theme"
-          >
-            {theme === "light" ? <MdDarkMode /> : <MdLightMode />}
-          </button>
         </nav>
 
-        {/* Mobile Hamburger Button */}
+        {/* Mobile Button */}
         <button
-          className="md:hidden menu-btn"
-          aria-label="Toggle Menu"
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsOpen(!isOpen);
-          }}
+          className="md:hidden text-white text-2xl"
+          onClick={() => setIsOpen(!isOpen)}
         >
-          <svg
-            className="w-7 h-7"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"}
-            ></path>
-          </svg>
+          ☰
         </button>
       </div>
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden overflow-hidden transition-max-height duration-300 ease-in-out ${
-          isOpen ? "max-h-96" : "max-h-0"
-        }`}
+        className={`md:hidden overflow-hidden transition-all duration-300 ${
+          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        } bg-black/80 backdrop-blur-lg`}
       >
-        <ul className="flex flex-col items-center py-4 space-y-4 mobile-menu">
+        <ul className="flex flex-col items-center py-6 space-y-4">
           {menuItems.map((item) => (
             <li key={item.name}>
               <a
                 href={item.link}
-                className="nav-link"
                 onClick={() => setIsOpen(false)}
+                className="text-gray-300 hover:text-white text-lg"
               >
                 {item.name}
               </a>
             </li>
           ))}
-          <li>
-            <button
-              onClick={toggleTheme}
-              className="px-3 py-1 rounded-md theme-toggle"
-              aria-label="Toggle Theme"
-            >
-              {theme === "light" ? <MdDarkMode /> : <MdLightMode />}
-            </button>
-          </li>
         </ul>
       </div>
-      <span className="navbar-bg-animation"></span>
     </header>
   );
 };
