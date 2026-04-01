@@ -1,61 +1,38 @@
-/* 🌞 Light Mode */
-body.light .hero-section {
-  background-color: #ffffff;
-  color: #111111;
+/* Animation */
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin-slow-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
-body.light .hero-title {
-  color: #111111;
+/* Animation Classes */
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
 }
-
-body.light .hero-desc {
-  color: #333333;
+.animate-spin-slow-reverse {
+  animation: spin-slow-reverse 15s linear infinite;
 }
-
-body.light .hero-btn-primary {
-  background-color: crimson;
-  color: #ffffff;
-}
-body.light .hero-btn-primary:hover {
-  background-color: #b71c1c;
-}
-
-body.light .hero-btn-secondary {
-  border: 1px solid #111111;
-  color: #111111;
-}
-body.light .hero-btn-secondary:hover {
-  background-color: #111111;
-  color: #ffffff;
-}
-
-/* 🌙 Dark Mode */
-body.dark .hero-section {
-  background-color: #111111;
-  color: #f1f1f1;
-}
-
-body.dark .hero-title {
-  color: #ffffff;
-}
-
-body.dark .hero-desc {
-  color: #cccccc;
-}
-
-body.dark .hero-btn-primary {
-  background-color: crimson;
-  color: #ffffff;
-}
-body.dark .hero-btn-primary:hover {
-  background-color: #e63946;
-}
-
-body.dark .hero-btn-secondary {
-  border: 1px solid #ffffff;
-  color: #ffffff;
-}
-body.dark .hero-btn-secondary:hover {
-  background-color: #ffffff;
-  color: #111111;
+.animate-float {
+  animation: float 8s ease-in-out infinite;
 }

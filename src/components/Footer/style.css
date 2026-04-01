@@ -1,0 +1,68 @@
+:root {
+  --footer-bg: #ffffff;
+  --footer-text: #111111;
+  --footer-logo: crimson;
+  --footer-link: #111111;
+  --footer-link-hover: crimson;
+  --footer-social: #555555;
+  --footer-social-hover: crimson;
+  --footer-copy: #555555;
+}
+
+body.dark {
+  --footer-bg: #111111;
+  --footer-text: #f1f1f1;
+  --footer-logo: crimson;
+  --footer-link: #f1f1f1;
+  --footer-link-hover: crimson;
+  --footer-social: #aaaaaa;
+  --footer-social-hover: crimson;
+  --footer-copy: #aaaaaa;
+}
+
+.footer-section {
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  padding: 3rem 2rem;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-logo {
+  color: var(--footer-logo);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.footer-links a {
+  color: var(--footer-link);
+  margin: 0 0.75rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--footer-link-hover);
+}
+
+.footer-socials .social-icon {
+  color: var(--footer-social);
+  margin: 0 0.5rem;
+  font-size: 1.25rem;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.footer-socials .social-icon:hover {
+  color: var(--footer-social-hover);
+}
+
+.footer-copy {
+  color: var(--footer-copy);
+  font-size: 0.875rem;
+  margin-top: 1.5rem;
+}

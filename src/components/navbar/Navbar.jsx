@@ -1,113 +1,175 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+
+import "./Style.css";
+
+import { menuItems } from "./navUtils";
 
 const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [theme, setTheme] = useState("light");
-    const menuRef = useRef(null); // menu + button এর wrapper ref
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-    // load theme from localStorage
-    useEffect(() => {
-        const savedTheme = localStorage.getItem("theme") || "light";
-        setTheme(savedTheme);
-        document.body.className = savedTheme;
-    }, []);
+  const menuRef = useRef(null);
+  const particlesRef = useRef(null);
 
-    // apply theme
-    useEffect(() => {
-        document.body.className = theme;
-        localStorage.setItem("theme", theme);
-    }, [theme]);
+  // Scroll effect (glass + shrink)
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
 
-    // window click listener (close only when clicked outside)
-    useEffect(() => {
-        const handleWindowClick = (e) => {
-            if (menuRef.current && !menuRef.current.contains(e.target)) {
-                setIsOpen(false);
-            }
-        };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-        window.addEventListener("click", handleWindowClick);
-        return () => window.removeEventListener("click", handleWindowClick);
-    }, []);
+  useEffect(() => {
+    const navbar = menuRef.current;
+    const particlesContainer = particlesRef.current;
+    if (!navbar || !particlesContainer) return;
 
-    return (
-        <header className="fixed top-0 left-0 w-full z-20 shadow-lg navbar" ref={menuRef}>
-            <div className="container mx-auto flex justify-between items-center w-[90%] md:w-[80%] py-4">
-                {/* Logo */}
-                <h1 className="text-2xl font-bold tracking-tight logo flex">
-                    AN<p className="text-[crimson] font-bold px-2 text-3xl">i</p>K
-                </h1>
+    const particleCount = 20;
 
-                {/* Desktop Menu */}
-                <nav className="hidden md:flex items-center space-x-6 font-medium">
-                    <a href="#home" className="nav-link">Home</a>
-                    <a href="#about" className="nav-link">About Me</a>
-                    <a href="#skills" className="nav-link">Skills</a>
-                    <a href="#projects" className="nav-link">Projects</a>
-                    <a href="#contact" className="nav-link">Contact</a>
+    for (let i = 0; i < particleCount; i++) createParticle();
 
-                    {/* 🔘 Dark/Light Mode Toggle */}
-                    <button
-                        onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-                        className="ml-4 px-3 py-1 rounded-md theme-toggle"
-                    >
-                        {theme === "light" ? "☀️" : "🌙"}
-                    </button>
-                </nav>
+    function createParticle() {
+      const particle = document.createElement("div");
+      particle.className = "particle";
 
-                {/* Mobile Hamburger Button */}
-                <button
-                    className="md:hidden menu-btn"
-                    onClick={(e) => {
-                        e.stopPropagation(); // prevent immediate close
-                        setIsOpen(!isOpen);
-                    }}
-                >
-                    <svg
-                        className="w-7 h-7"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"}
-                        ></path>
-                    </svg>
-                </button>
-            </div>
+      const size = Math.random() * 3 + 1;
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
 
-            {/* Mobile Menu */}
-            <div
-                className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? "max-h-96" : "max-h-0"
-                    }`}
+      resetParticle(particle);
+      particlesContainer.appendChild(particle);
+
+      animateParticle(particle);
+    }
+
+    function resetParticle(particle) {
+      const x = Math.random() * 100;
+      const y = Math.random() * 100;
+
+      particle.style.left = `${x}%`;
+      particle.style.top = `${y}%`;
+      particle.style.opacity = "0";
+
+      return { x, y };
+    }
+
+    function animateParticle(particle) {
+      const pos = resetParticle(particle);
+
+      const duration = Math.random() * 5 + 5;
+
+      setTimeout(() => {
+        particle.style.transition = `all ${duration}s linear`;
+        particle.style.opacity = Math.random() * 0.3 + 0.1;
+
+        particle.style.left = `${pos.x + (Math.random() * 10 - 5)}%`;
+        particle.style.top = `${pos.y + (Math.random() * 10 - 5)}%`;
+
+        setTimeout(() => animateParticle(particle), duration * 1000);
+      }, Math.random() * 2000);
+    }
+
+    const handleMouseMove = (e) => {
+      const rect = navbar.getBoundingClientRect();
+
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+      const particle = document.createElement("div");
+      particle.className = "particle";
+
+      particle.style.width = "4px";
+      particle.style.height = "4px";
+      particle.style.left = `${x}%`;
+      particle.style.top = `${y}%`;
+      particle.style.opacity = "0.2";
+
+      particlesContainer.appendChild(particle);
+
+      setTimeout(() => {
+        particle.style.transition = "all 1.5s ease-out";
+        particle.style.opacity = "0";
+        particle.style.transform = "scale(0.5)";
+        particle.style.left = `${x + (Math.random() * 10 - 5)}%`;
+        particle.style.top = `${y + (Math.random() * 10 - 5)}%`;
+
+        setTimeout(() => particle.remove(), 1500);
+      }, 50);
+    };
+
+    navbar.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      navbar.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+
+  return (
+    <header
+      ref={menuRef}
+      className={`fixed top-0 w-full z-[9999] transition-all duration-300 ${
+        scrolled
+          ? "backdrop-blur-lg bg-black/60 shadow-xl py-2"
+          : "bg-transparent py-4"
+      }`}
+    >
+      <div className="particles-container" ref={particlesRef}></div>
+
+      <div className="max-w-7xl mx-auto flex justify-between items-center w-[90%]">
+        {/* Logo */}
+        <h1 className="text-2xl font-bold text-white tracking-tight flex items-center">
+          <span>AN</span>
+          <span className="text-red-500 text-3xl px-1">i</span>
+          <span>K</span>
+        </h1>
+
+        {/* Desktop Menu */}
+        <nav className="hidden md:flex items-center space-x-8">
+          {menuItems.map((item) => (
+            <a
+              key={item.name}
+              href={item.link}
+              className="relative text-gray-300 hover:text-white transition duration-300 group"
             >
-                <ul className="flex flex-col items-center py-4 space-y-4 mobile-menu">
-                    <li><a href="#home" className="nav-link" onClick={() => setIsOpen(false)}>Home</a></li>
-                    <li><a href="#about" className="nav-link" onClick={() => setIsOpen(false)}>About Me</a></li>
-                    <li><a href="#skills" className="nav-link" onClick={() => setIsOpen(false)}>Skills</a></li>
-                    <li><a href="#projects" className="nav-link" onClick={() => setIsOpen(false)}>Projects</a></li>
-                    <li><a href="#contact" className="nav-link" onClick={() => setIsOpen(false)}>Contact</a></li>
+              {item.name}
+              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-red-500 group-hover:w-full transition-all duration-300"></span>
+            </a>
+          ))}
+        </nav>
 
-                    {/* Mobile Theme Toggle */}
-                    <li>
-                        <button
-                            onClick={() => {
-                                setTheme(theme === "light" ? "dark" : "light");
-                                setIsOpen(false);
-                            }}
-                            className="px-3 py-1 rounded-md theme-toggle"
-                        >
-                            {theme === "light" ? "🌙 Dark" : "☀️ Light"}
-                        </button>
-                    </li>
-                </ul>
-            </div>
-        </header>
-    );
+        {/* Mobile Button */}
+        <button
+          className="md:hidden text-white text-2xl"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          ☰
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`md:hidden overflow-hidden transition-all duration-300 ${
+          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        } bg-black/80 backdrop-blur-lg`}
+      >
+        <ul className="flex flex-col items-center py-6 space-y-4">
+          {menuItems.map((item) => (
+            <li key={item.name}>
+              <a
+                href={item.link}
+                onClick={() => setIsOpen(false)}
+                className="text-gray-300 hover:text-white text-lg"
+              >
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </header>
+  );
 };
 
 export default Navbar;

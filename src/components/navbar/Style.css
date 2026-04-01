@@ -1,0 +1,84 @@
+:root {
+  --navbar-bg: #ffffff;
+  --navbar-text: #111111;
+  --nav-link: #111111;
+  --nav-link-hover: crimson;
+  --logo-color: #111111;
+  --theme-toggle-bg: #111111;
+  --theme-toggle-text: #ffffff;
+
+  --navbar-glow: rgba(70, 78, 93, 0.25);
+  --particle-color: #f1f1f1;
+}
+
+/* Navbar Background Animation */
+.navbar-bg-animation {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    600px circle at var(--x) var(--y),
+    var(--navbar-glow),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .navbar:hover .navbar-bg-animation {
+    opacity: 1;
+  }
+}
+
+/* Navbar Core */
+.navbar {
+  background-color: var(--navbar-bg);
+  color: var(--navbar-text);
+  position: sticky;
+  top: 0;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.logo {
+  color: var(--logo-color);
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.nav-link {
+  color: var(--nav-link);
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--nav-link-hover);
+}
+
+.theme-toggle {
+  background-color: var(--theme-toggle-bg);
+  color: var(--theme-toggle-text);
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Cursor / Particle Effect */
+.particles-container {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  background: var(--particle-color);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
