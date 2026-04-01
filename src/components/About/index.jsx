@@ -58,7 +58,7 @@ const About = () => {
           </div>
           <div className="pt-4">
             <a
-              href="/cv"
+              href="/cv.pdf"
               target="_blank"
               className="inline-block px-8 py-3 rounded-xl bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 transition font-semibold shadow-lg shadow-red-600/30 hover:shadow-red-600/50 hover:scale-105"
             >

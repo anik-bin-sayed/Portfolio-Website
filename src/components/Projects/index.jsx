@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import projectsData from "./ProjectData";
+import GitHubButton from "../utils/Button/GitHubButton";
 
 const Projects = () => {
   const [filter, setFilter] = useState("all");
@@ -127,27 +128,7 @@ const Projects = () => {
           ))}
         </div>
         <div className="text-center mt-12">
-          <a
-            href="https://github.com/anik-bin-sayed?tab=repositories"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-white font-semibold hover:border-crimson/50 hover:bg-crimson/10 transition-all duration-300"
-          >
-            View All on GitHub
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-              />
-            </svg>
-          </a>
+          <GitHubButton />
         </div>
       </div>
     </section>

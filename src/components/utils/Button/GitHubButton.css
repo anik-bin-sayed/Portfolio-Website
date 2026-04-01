@@ -1,0 +1,33 @@
+.draw-outline {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid rgba(220, 38, 38, 0); /* transparent initially */
+  transition: border-color 0s 0.2s; /* delay so border appears after clip-path finishes */
+  pointer-events: none;
+}
+
+.group:hover .draw-outline {
+  border-color: rgba(220, 38, 38, 0.8); /* crimson with slight transparency */
+}
+
+/* The drawing animation using clip-path */
+.draw-outline::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid #dc2626; /* solid crimson */
+  clip-path: inset(50% 50% 50% 50%);
+  transition: clip-path 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.group:hover .draw-outline::before {
+  clip-path: inset(0% 0% 0% 0%);
+}
+
+/* Optional: glow effect */
+.group:hover {
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
+}
