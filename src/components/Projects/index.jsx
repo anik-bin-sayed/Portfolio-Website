@@ -73,8 +73,14 @@ const Projects = () => {
                   <a
                     href={project.demo}
                     target="_blank"
+                    disabled={project.demo === "#"}
                     rel="noopener noreferrer"
-                    className="px-4 py-2 bg-crimson rounded-lg text-sm font-semibold text-white hover:bg-red-600 transition transform hover:scale-105"
+                    className={`px-4 py-2 bg-crimson rounded-lg text-sm font-semibold text-white  transform hover:scale-105 ${
+                      project.demo === "#"
+                        ? "bg-gray-500 text-gray-400 cursor-not-allowed"
+                        : "hover:bg-red-600 transition"
+                    }`}
+                    onClick={(e) => project.demo === "#" && e.preventDefault()}
                   >
                     Live Demo
                   </a>

@@ -1,6 +1,6 @@
 import blogTitleImage from "../../assets/blog.png";
-import e_commerceTitleImage from "../../assets/ecommerce.png";
 import portfolioTitleImage from "../../assets/portfolio.png";
+import userManagementImage from "../../assets/user_management.jpg";
 
 const projectsData = [
   {
@@ -17,13 +17,22 @@ const projectsData = [
   },
   {
     id: 2,
-    title: "E-commerce App",
+    title: "Advanced User Management & Authentication System",
     description:
-      "Full-stack MERN e-commerce platform with secure payment gateway, user authentication, product management, and order tracking.",
-    image: e_commerceTitleImage,
+      "A robust full-stack application implementing secure user authentication and authorization using Django REST Framework and React. Includes JWT login, email verification, OTP-based login, password recovery, and role-based access control.",
+    image: userManagementImage,
     demo: "#",
-    github: "#",
-    tech: ["MongoDB", "Express", "React", "Node.js", "Stripe"],
+    github:
+      "https://github.com/anik-bin-sayed/user_management_system_with_full_security",
+    tech: [
+      "React",
+      "Redux Toolkit Query",
+      "Lazy Loading",
+      "Django",
+      "Rest Framework",
+      "Postgres",
+      "tailwind css",
+    ],
     featured: true,
     category: "fullstack",
   },

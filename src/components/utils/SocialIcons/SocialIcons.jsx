@@ -15,11 +15,19 @@ const SocialIcons = () => {
         <FaGithub />
       </a>
 
-      <a href="#" target="_blank" className={iconStyle}>
+      <a
+        href="https://www.linkedin.com/in/anik-ibne-sayed-b61498365/?skipRedirect=true"
+        target="_blank"
+        className={iconStyle}
+      >
         <FaLinkedinIn />
       </a>
 
-      <a href="#" target="_blank" className={iconStyle}>
+      <a
+        href="https://www.facebook.com/anikbinsayed206"
+        target="_blank"
+        className={iconStyle}
+      >
         <FaFacebookF />
       </a>
     </>
