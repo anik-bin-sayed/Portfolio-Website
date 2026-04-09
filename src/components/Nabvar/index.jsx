@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import "./Style.css";
 
 import { menuItems } from "./navUtils";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +12,6 @@ const Navbar = () => {
   const menuRef = useRef(null);
   const particlesRef = useRef(null);
 
-  // Scroll effect (glass + shrink)
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -118,24 +118,22 @@ const Navbar = () => {
       <div className="particles-container" ref={particlesRef}></div>
 
       <div className="max-w-7xl mx-auto flex justify-between items-center w-[90%]">
-        {/* Logo */}
         <h1 className="text-2xl font-bold text-white tracking-tight flex items-center">
           <span>AN</span>
           <span className="text-red-500 text-3xl px-1">i</span>
           <span>K</span>
         </h1>
 
-        {/* Desktop Menu */}
         <nav className="hidden md:flex items-center space-x-8">
           {menuItems.map((item) => (
-            <a
+            <Link
               key={item.name}
-              href={item.link}
+              to={item.link}
               className="relative text-gray-300 hover:text-white transition duration-300 group"
             >
               {item.name}
               <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-red-500 group-hover:w-full transition-all duration-300"></span>
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -157,13 +155,13 @@ const Navbar = () => {
         <ul className="flex flex-col items-center py-6 space-y-4">
           {menuItems.map((item) => (
             <li key={item.name}>
-              <a
-                href={item.link}
+              <Link
+                to={item.link}
                 onClick={() => setIsOpen(false)}
                 className="text-gray-300 hover:text-white text-lg"
               >
                 {item.name}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

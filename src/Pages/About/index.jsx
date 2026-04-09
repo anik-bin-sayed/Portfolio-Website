@@ -1,0 +1,130 @@
+import React from "react";
+import aboutPhoto from "../../assets/about_anik.jpg";
+
+const ABOUT_TEXT = {
+  title: "About Me",
+  desc: "I am a passionate Full Stack Developer focused on building modern, high-performance and scalable web applications. I love solving complex problems and creating smooth user experiences using React, Next.js, and backend technologies.",
+};
+
+const skills = [
+  "Frontend",
+  "Backend",
+  "Database",
+  "DSA",
+  "REST API",
+  "Authentication",
+];
+
+const About = () => {
+  return (
+    <section
+      id="about"
+      className="relative w-full min-h-screen py-20 px-6 md:px-20 bg-[#050505] text-white overflow-hidden flex items-center"
+    >
+      {/* Animated gradient orbs */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-red-600/30 rounded-full blur-[120px] animate-pulse" />
+      <div className="absolute bottom-20 right-10 w-80 h-80 bg-blue-600/30 rounded-full blur-[120px] animate-pulse [animation-delay:2s]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-600/20 rounded-full blur-[140px]" />
+
+      {/* Subtle grid pattern */}
+      <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%239C92AC%22 fill-opacity=%220.04%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]" />
+
+      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16 relative z-10">
+        {/* Image Section - Clean & Elegant */}
+        <div className="w-full lg:w-2/5 flex justify-center">
+          <div className="relative group">
+            {/* Simple shadow glow instead of spinner */}
+            <div className="absolute -inset-4 bg-gradient-to-r from-red-500/20 via-purple-500/20 to-blue-500/20 rounded-2xl blur-xl opacity-70 group-hover:opacity-100 transition duration-500" />
+
+            <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 p-2 rounded-2xl">
+              <img
+                src={aboutPhoto}
+                alt="About Anik"
+                className="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-xl shadow-2xl transform transition duration-500 "
+              />
+              {/* Overlay gradient on hover */}
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-500" />
+            </div>
+
+            {/* Floating badge - kept for charm */}
+            <div className="absolute -bottom-5 -right-5 bg-gradient-to-r from-red-600 to-red-700 px-4 py-2 text-sm font-semibold rounded-full shadow-xl shadow-red-600/30 backdrop-blur-sm border border-white/20 ">
+              Full Stack Dev
+            </div>
+          </div>
+        </div>
+
+        {/* Content Section */}
+        <div className="w-full lg:w-3/5 space-y-6 text-center lg:text-left">
+          {/* Title with underline */}
+          <div className="relative inline-block mx-auto lg:mx-0">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold">
+              <span className="bg-gradient-to-r from-red-500 via-orange-400 to-amber-500 bg-clip-text text-transparent">
+                {ABOUT_TEXT.title}
+              </span>
+            </h2>
+            <div className="absolute -bottom-2 left-0 w-20 h-1 bg-gradient-to-r from-red-500 to-orange-400 rounded-full mx-auto lg:mx-0" />
+          </div>
+
+          {/* Description card */}
+          <div className="backdrop-blur-sm bg-white/5 rounded-2xl p-6 border border-white/10 shadow-xl">
+            <p className="text-gray-300 text-base md:text-lg leading-relaxed">
+              {ABOUT_TEXT.desc}
+            </p>
+          </div>
+
+          {/* Skills section */}
+          <div className="space-y-3">
+            <h3 className="text-sm uppercase tracking-wider text-gray-400 font-semibold flex items-center justify-center lg:justify-start gap-2">
+              <span className="w-8 h-px bg-red-500/50" />
+              Core Expertise
+              <span className="w-8 h-px bg-red-500/50" />
+            </h3>
+            <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
+              {skills.map((skill) => (
+                <span
+                  key={skill}
+                  className="group relative px-4 py-2 text-sm font-medium bg-white/5 border border-white/10 rounded-full hover:border-red-500 hover:bg-red-500/10 transition-all duration-300 cursor-default overflow-hidden"
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-500 group-hover:scale-150 transition-transform" />
+                    {skill}
+                  </span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-red-500/0 via-red-500/10 to-red-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          <div className="pt-4 flex justify-center lg:justify-start">
+            <a
+              href="/cv.pdf"
+              target="_blank"
+              className="group relative inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 transition-all duration-300 font-semibold shadow-lg shadow-red-600/30 hover:shadow-red-600/50 hover:scale-105 overflow-hidden"
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                📄 Download Resume
+                <svg
+                  className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                  />
+                </svg>
+              </span>
+              <span className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default About;

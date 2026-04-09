@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import profileImage from "../../assets/anik.jpg";
-import LinkTag from "../utils/Link/LinkTag";
-import SocialIcons from "../utils/SocialIcons/SocialIcons";
+import LinkTag from "../../components/utils/Link/LinkTag";
+import SocialIcons from "../../components/utils/SocialIcons/SocialIcons";
 
 const HeroSection = () => {
   const imageRef = useRef(null);
@@ -117,7 +117,7 @@ const HeroSection = () => {
             </LinkTag>
 
             <a
-              href="#contact"
+              href="/contact"
               className="px-6 py-3 rounded-lg border border-gray-600 hover:border-red-500 transition"
             >
               Contact

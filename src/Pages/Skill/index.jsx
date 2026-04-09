@@ -27,17 +27,23 @@ const Skill = () => {
     <section
       id="skills"
       ref={sectionRef}
-      className="relative w-full py-24 px-6 md:px-20 bg-[#050505] text-white overflow-hidden"
+      className="relative w-full min-h-screen py-24 px-6 md:px-20 bg-[#050505] text-white overflow-hidden"
     >
       <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-purple-600/20 blur-[100px] rounded-full" />
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-red-600/20 blur-[100px] rounded-full" />
       <div className="max-w-6xl mx-auto relative z-10">
-        <h2 className="text-3xl md:text-5xl font-bold text-center mb-16">
-          <span className="bg-gradient-to-r from-red-500 to-orange-400 bg-clip-text text-transparent">
-            My Skills
-          </span>
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-5xl font-bold text-center mb-16">
+            <span className="bg-gradient-to-r from-red-500 to-orange-400 bg-clip-text text-transparent">
+              My Skills
+            </span>
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Here are the technologies and tools I use to build efficient,
+            scalable, and modern web applications.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-6">
           {skills.map((skill, index) => (
             <div
               key={index}

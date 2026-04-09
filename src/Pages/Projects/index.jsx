@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import projectsData from "./ProjectData";
-import GitHubButton from "../utils/Button/GitHubButton";
+import GitHubButton from "../../components/utils/Button/GitHubButton";
 
 const Projects = () => {
   const [filter, setFilter] = useState("all");

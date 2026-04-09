@@ -39,7 +39,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="relative w-full py-24 px-6 md:px-20 bg-[#050505] text-white overflow-hidden"
+      className="relative w-full min-h-screen py-24 px-6 md:px-20 bg-[#050505] text-white overflow-hidden"
     >
       <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-red-600/20 blur-[100px] rounded-full" />
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-600/20 blur-[100px] rounded-full" />
