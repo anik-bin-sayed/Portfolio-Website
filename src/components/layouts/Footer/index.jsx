@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from "react";
-import SocialIcons from "../utils/SocialIcons/SocialIcons";
+import SocialIcons from "../../utils/SocialIcons/SocialIcons";
+import { Link } from "react-router-dom";
+
+const navItems = [
+  { name: "Home", link: "/" },
+  { name: "About", link: "/about" },
+  { name: "Skills", link: "/skills" },
+  { name: "Projects", link: "/projects" },
+  { name: "Contact", link: "/contact" },
+];
 
 const Footer = () => {
   const [showButton, setShowButton] = useState(false);
 
-  // Scroll detect
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 200) {
@@ -72,22 +80,18 @@ const Footer = () => {
             </h3>
 
             <ul className="grid grid-cols-2 gap-y-3 gap-x-6">
-              {[
-                { name: "Home", link: "#home" },
-                { name: "About", link: "#about" },
-                { name: "Skills", link: "#skills" },
-                { name: "Projects", link: "#projects" },
-                { name: "Contact", link: "#contact" },
-                { name: "Resume", link: "#resume" },
-              ].map((item) => (
+              {navItems.map((item) => (
                 <li key={item.name}>
-                  <a
-                    href={item.link}
+                  <Link
+                    to={item.link}
+                    onClick={() =>
+                      window.scrollTo({ top: 0, behavior: "smooth" })
+                    }
                     className="text-gray-400 hover:text-red-500 transition-all duration-300 relative group inline-block text-sm"
                   >
                     {item.name}
                     <span className="absolute left-0 -bottom-1 w-0 h-[1.5px] bg-gradient-to-r from-red-500 to-red-400 group-hover:w-full transition-all duration-300"></span>
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

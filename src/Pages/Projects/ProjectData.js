@@ -2,6 +2,7 @@ import blogTitleImage from "../../assets/blog.png";
 import portfolioTitleImage from "../../assets/portfolio.png";
 import userManagementImage from "../../assets/user_management.jpg";
 import cmsImage from "../../assets/CMS.png";
+import blogApplication from "../../assets/blog-app.png";
 
 const projectsData = [
   {
@@ -53,10 +54,28 @@ const projectsData = [
     id: 4,
     title: "Mini Course management Project",
     description:
-      "A modern Mini Course Management application built with React and Tailwind CSS. It enables users to efficiently manage courses with features like dynamic course creation, categorization, and search functionality. The project focuses on clean UI design, responsiveness, and a smooth user experience",
+      "A modern Mini Course Management application built with React and Tailwind CSS, Django(Python). It enables users to efficiently manage courses with features like dynamic course creation, categorization, and search functionality. The project focuses on clean UI design, responsiveness, and a smooth user experience",
     image: cmsImage,
     demo: "https://drive.google.com/file/d/1wq7SFOn2UxFKPwWRMeU4D0-KCxfqq9UM/view?usp=sharing",
     github: "https://github.com/anik-bin-sayed/Full-stack-mini-CMS",
+    tech: [
+      "React",
+      "Redux RTK Query",
+      "Django",
+      "Django Rest Framework",
+      "Tailwind CSS",
+    ],
+    featured: false,
+    category: "fullstack",
+  },
+  {
+    id: 4,
+    title: "Blog Application",
+    description:
+      "This application built with TypeScript, Tailwind CSS and Django(Python). It enables users to efficiently manage courses with features like dynamic course creation, categorization, and search functionality. The project focuses on clean UI design, responsiveness, and a smooth user experience",
+    image: blogApplication,
+    demo: "#",
+    github: "https://github.com/anik-bin-sayed/Full-stack-blog-application",
     tech: [
       "React",
       "Redux RTK Query",
