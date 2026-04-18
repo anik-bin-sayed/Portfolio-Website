@@ -39,6 +39,7 @@ const Certificates = () => {
                 <img
                   src={cert.image}
                   alt={cert.title}
+                  loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-transparent to-transparent opacity-60" />

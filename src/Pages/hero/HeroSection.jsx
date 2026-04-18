@@ -150,7 +150,8 @@ const HeroSection = () => {
             <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border border-white/10 shadow-xl">
               <img
                 src={profileImage}
-                alt="Anik"
+                alt="anik"
+                loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent"></div>

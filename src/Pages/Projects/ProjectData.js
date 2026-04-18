@@ -69,7 +69,7 @@ const projectsData = [
     category: "fullstack",
   },
   {
-    id: 4,
+    id: 5,
     title: "Blog Application",
     description:
       "This application built with TypeScript, Tailwind CSS and Django(Python). It enables users to efficiently manage courses with features like dynamic course creation, categorization, and search functionality. The project focuses on clean UI design, responsiveness, and a smooth user experience",

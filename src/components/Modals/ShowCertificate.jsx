@@ -1,7 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { RxCross2 } from "react-icons/rx";
 
 const ShowCertificate = ({ selectedCert, setSelectedCert }) => {
+  console.log("Rendering ShowCertificate for:", selectedCert?.title);
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4 transition-all duration-300"
@@ -21,16 +22,15 @@ const ShowCertificate = ({ selectedCert, setSelectedCert }) => {
           </span>
         </button>
         <div className="flex flex-col md:flex-row items-start md:items-center p-6 border-b border-white/20">
-          {/* Image - takes full width on mobile, half on desktop */}
           <div className="w-full md:w-1/2 mb-6 md:mb-0 md:mr-6">
             <img
               src={selectedCert.image}
               alt={selectedCert.title}
+              loading="lazy"
               className="w-full h-auto object-contain bg-gray-800 rounded-lg"
             />
           </div>
 
-          {/* Details - takes full width on mobile, half on desktop */}
           <div className="w-full md:w-1/2 space-y-4">
             <div>
               <span className="inline-block px-3 py-1 bg-crimson/20 text-crimson rounded-full text-sm font-semibold mb-3">
@@ -108,4 +108,4 @@ const ShowCertificate = ({ selectedCert, setSelectedCert }) => {
   );
 };
 
-export default ShowCertificate;
+export default memo(ShowCertificate);

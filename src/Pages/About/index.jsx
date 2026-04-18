@@ -40,6 +40,7 @@ const About = () => {
               <img
                 src={aboutPhoto}
                 alt="About Anik"
+                loading="lazy"
                 className="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-xl shadow-2xl transform transition duration-500 "
               />
               {/* Overlay gradient on hover */}

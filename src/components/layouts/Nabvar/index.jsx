@@ -10,7 +10,14 @@ const Navbar = () => {
   const menuRef = useRef(null);
   const particlesRef = useRef(null);
 
-  // Handle scroll background effect
+  const prefetchMap = {
+    "/about": () => import("../../../Pages/About"),
+    "/skills": () => import("../../../Pages/Skill"),
+    "/projects": () => import("../../../Pages/Projects"),
+    "/contact": () => import("../../../Pages/Contract"),
+    "/certificates": () => import("../../../Pages/Certificate"),
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -19,7 +26,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Particle effect logic
   useEffect(() => {
     const navbar = menuRef.current;
     const particlesContainer = particlesRef.current;
@@ -65,7 +71,6 @@ const Navbar = () => {
       timeouts.push(timeout1);
     };
 
-    // Initial particles
     for (let i = 0; i < 20; i++) {
       createParticle();
     }
@@ -112,7 +117,6 @@ const Navbar = () => {
       if (particlesContainer) particlesContainer.innerHTML = "";
     };
   }, []);
-
   return (
     <header
       ref={menuRef}
@@ -139,6 +143,7 @@ const Navbar = () => {
             <NavLink
               key={item.name}
               to={item.link}
+              onMouseEnter={() => prefetchMap[item.link]?.()}
               className={({ isActive }) =>
                 `relative transition duration-300 group ${
                   isActive ? "text-white" : "text-gray-300 hover:text-white"
@@ -148,8 +153,6 @@ const Navbar = () => {
               {({ isActive }) => (
                 <>
                   {item.name}
-
-                  {/* underline */}
                   <span
                     className={`absolute left-0 -bottom-1 h-[2px] bg-red-500 transition-all duration-300 ${
                       isActive ? "w-full" : "w-0 group-hover:w-full"
@@ -162,9 +165,8 @@ const Navbar = () => {
         </nav>
 
         <button
-          className="md:hidden text-white text-2xl focus:outline-none"
+          className="md:hidden text-white text-2xl"
           onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
         >
           {isOpen ? "✕" : "☰"}
         </button>
@@ -180,8 +182,9 @@ const Navbar = () => {
             <li key={item.name}>
               <Link
                 to={item.link}
+                onMouseEnter={() => prefetchMap[item.link]?.()}
                 onClick={() => setIsOpen(false)}
-                className="text-gray-300 hover:text-white text-lg transition-colors"
+                className="text-gray-300 hover:text-white text-lg"
               >
                 {item.name}
               </Link>
