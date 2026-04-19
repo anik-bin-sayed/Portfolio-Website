@@ -23,7 +23,7 @@ const Contact = () => {
 
   if (state.succeeded) {
     return (
-      <section className="relative py-24 px-6 md:px-20 bg-[#050505] text-white">
+      <section className="relative w-full h-screen flex items-center justify-center py-24 px-6 md:px-20 bg-[#050505] text-white">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-4 text-green-400">
             Message Sent!
